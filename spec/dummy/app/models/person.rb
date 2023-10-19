@@ -6,6 +6,8 @@ require "binary_serializer"
 class Person < ActiveRecord::Base
   include Vault::EncryptedModel
 
+  store_accessor :config, [:details]
+
   vault_attribute :ssn
 
   vault_attribute :credit_card,
