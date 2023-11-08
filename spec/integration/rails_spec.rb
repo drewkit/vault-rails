@@ -15,6 +15,12 @@ describe Vault::Rails do
       Vault::Rails.logical.write("transit/keys/dummy_people_ssn")
     end
 
+    it "encrypts store attributes" do
+      person = Person.create!(eye_color: "blue", hair_color: "brown")
+      expect(person.features_encrypted).to be
+      expect(person.features_encrypted.encoding).to eq(Encoding::UTF_8)
+    end
+
     it "encrypts attributes" do
       person = Person.create!(ssn: "123-45-6789")
       expect(person.ssn_encrypted).to be
