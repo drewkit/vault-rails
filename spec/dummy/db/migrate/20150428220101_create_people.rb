@@ -7,6 +7,7 @@ class CreatePeople < ActiveRecord::Migration[4.2]
       t.string :name
       t.string :ssn_encrypted
       t.string :cc_encrypted
+      t.string :features
       t.string :details_encrypted
       t.string :business_card_encrypted
       t.string :favorite_color_encrypted

@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2015_04_28_220101) do
     t.string "ssn_encrypted"
     t.string "cc_encrypted"
     t.string "details_encrypted"
-    t.string "features_encrypted"
+    t.string "features"
     t.string "business_card_encrypted"
     t.string "favorite_color_encrypted"
     t.string "non_ascii_encrypted"

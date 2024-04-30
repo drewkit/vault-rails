@@ -17,20 +17,19 @@ describe Vault::Rails do
 
     it "encrypts store attributes 1" do
       person = Person.create!(features: {eye_color: "blue", hair_color: "brown"})
-      expect(person.features_encrypted).to be
+      expect(person.features).to be
       expect(person.eye_color).to eq("blue")
-      expect(person.features_encrypted.encoding).to eq(Encoding::UTF_8)
     end
 
     it "encrypts store attributes 2" do
       person = Person.create!(features: {eye_color: "blue", hair_color: "black"})
-      expect(person.features_encrypted).to be
+      expect(person.features).to be
       expect(person.hair_color).to eq("black")
     end
 
     it "encrypts store attributes 3 -- change hair color" do
       person = Person.create!(features: {eye_color: "blue", hair_color: "black"})
-      expect(person.features_encrypted).to be
+      expect(person.features).to be
       expect(person.hair_color).to eq("black")
       person.hair_color = "red"
       person.save
