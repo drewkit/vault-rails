@@ -68,7 +68,6 @@ class Person < ActiveRecord::Base
     end
 
     define_method "#{col_name}=" do |val|
-      puts "in the setter method for #{col_name}"
       self.features[col_name] = val
       self.features
     end
