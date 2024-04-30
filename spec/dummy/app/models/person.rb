@@ -6,9 +6,7 @@ require "binary_serializer"
 class Person < ActiveRecord::Base
   include Vault::EncryptedModel
 
-  store_accessor :features, [:eye_color, :hair_color]
-
-  vault_attribute :features, serialize: :json, default: {}
+  store :features, accessors: [:hair_color, :eye_color]
 
   vault_attribute :ssn
 
