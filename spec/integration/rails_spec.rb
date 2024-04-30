@@ -18,6 +18,7 @@ describe Vault::Rails do
     it "encrypts store attributes" do
       person = Person.create!(features: {eye_color: "blue", hair_color: "brown"})
       expect(person.features_encrypted).to be
+      expect(person.eye_color).to eq("blue")
       expect(person.features_encrypted.encoding).to eq(Encoding::UTF_8)
     end
 

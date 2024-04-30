@@ -59,6 +59,10 @@ class Person < ActiveRecord::Base
       role: "foobar_role"
     }
 
+  def eye_color
+    features.try(:fetch, :eye_color)
+  end
+
   def encryption_context
     "user_#{id}"
   end
