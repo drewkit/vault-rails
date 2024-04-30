@@ -6,8 +6,6 @@ require "binary_serializer"
 class Person < ActiveRecord::Base
   include Vault::EncryptedModel
 
-  store_accessor :features, [:eye_color, :hair_color]
-
   vault_attribute :features, serialize: :json, default: {}
 
   vault_attribute :ssn
@@ -60,6 +58,19 @@ class Person < ActiveRecord::Base
       transformation: "social_sec",
       role: "foobar_role"
     }
+
+
+  feature_columns = [:eye_color, :hair_color]
+
+  feature_columns.each do |col_name|
+    define_method col_name do
+      self.features.try(:fetch, col_name)
+    end
+
+    define_method "#{col_name}=" do |val|
+      self.features[col_name] = val
+    end
+  end
 
   def encryption_context
     "user_#{id}"
