@@ -69,7 +69,6 @@ class Person < ActiveRecord::Base
 
     define_method "#{col_name}=" do |val|
       self.features[col_name] = val
-      self.features
     end
   end
 
