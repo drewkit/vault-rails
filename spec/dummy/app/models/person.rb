@@ -59,8 +59,19 @@ class Person < ActiveRecord::Base
       role: "foobar_role"
     }
 
-  def eye_color
-    features.try(:fetch, :eye_color)
+
+  feature_columns = [:eye_color, :hair_color]
+
+  feature_columns.each do |col_name|
+    define_method col_name do
+      self.features.try(:fetch, col_name)
+    end
+
+    define_method "#{col_name}=" do |val|
+      puts "in the setter method for #{col_name}"
+      self.features[col_name] = val
+      self.features
+    end
   end
 
   def encryption_context
